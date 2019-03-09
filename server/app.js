@@ -1,18 +1,20 @@
 const express = require("express");
 const http = require("http");
-const io = require("socket.io");
 //configuring
 const app = express();
 const httpServer = http.Server(app);
-const ioServer = io(httpServer);
+const io = require("socket.io")(httpServer);
 
 //routes
 app.get("/",function(req,res){
     res.sendFile(__dirname+'/index.html');
 })
-
+//setting up socket.io for listening to the server
+io.on("connection",function(socket){
+    console.log("A user has been connected!");
+})
 
 //listining to server
-app.listen(3000,function(){
+httpServer.listen(3000,function(){
     console.log("Server is running....");
 })
