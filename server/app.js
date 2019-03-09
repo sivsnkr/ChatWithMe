@@ -1,10 +1,9 @@
 const express = require("express");
-const http = require("http");
-//configuring
 const app = express();
-const httpServer = http.Server(app);
-const io = require("socket.io")(httpServer);
-
+const http = require("http").Server(app);
+//configuring
+const io = require("socket.io")(http);
+const port = process.env.PORT||3000;
 //routes
 app.get("/",function(req,res){
     res.sendFile(__dirname+'/index.html');
@@ -12,9 +11,12 @@ app.get("/",function(req,res){
 //setting up socket.io for listening to the server
 io.on("connection",function(socket){
     console.log("A user has been connected!");
+    socket.on("disconnect",function(){
+        console.log("User Disconnected");
+    })
 })
 
 //listining to server
-httpServer.listen(3000,function(){
+http.listen(port,function(){
     console.log("Server is running....");
 })
