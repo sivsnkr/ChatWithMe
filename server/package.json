@@ -1,0 +1,14 @@
+{
+  "name": "chat_with_me",
+  "version": "1.0.0",
+  "description": "A Node.Js Based chat application with socket.io",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shiv Shankar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
