@@ -11,9 +11,12 @@ app.get("/",function(req,res){
 })
 //setting up socket.io for listening to the server
 io.on("connection",function(socket){
-    console.log("A user has been connected!");
+    console.log("An user has been connected!");
     socket.on("disconnect",function(){
         console.log("User Disconnected");
+    })
+    socket.on("message",function(msg){
+        console.log("Message: "+msg);
     })
 })
 
