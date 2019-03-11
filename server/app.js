@@ -4,6 +4,7 @@ const http = require("http").Server(app);
 //configuring
 const io = require("socket.io")(http);
 const port = process.env.PORT||3000;
+app.use(express.json());//this replace bodyParser.json(), so we don't have to import one extra library
 //routes
 app.get("/",function(req,res){
     res.sendFile(__dirname+'/index.html');
