@@ -12,12 +12,12 @@ app.get("/",function(req,res){
 //setting up socket.io for listening to the server
 io.on("connection",function(socket){
     socket.on("disconnect",function(){
-        
+        console.log("User has disconencted!");
+        io.sockets.emit("broadcast",{message: "User has disconnected!"});
     })
     socket.on("message",function(msg){
         console.log("Message: "+msg);
         //io.emit("message",msg);
-        socket.emit("broadcast",{message: "User has disconnected!"});
     })
 })
 
