@@ -24,13 +24,14 @@
     <script>
         $(function () {
             var socket = io();
-            $('form').submit(function(){
+            $('form').submit(function(e){
+                e.preventDefault();
                 socket.emit('message', $('#m').val());
                 $('#m').val('');
                 return false;
             });
-            socket.on('message', function(msg){
-                $('#messages').append($('<li>').text(msg));
+            socket.on('broadcast', function(msg){
+                $('#messages').append($('<li>').text(msg.message));
                 window.scrollTo(0, document.body.scrollHeight);
             });
         });
