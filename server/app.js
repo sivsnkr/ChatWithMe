@@ -13,7 +13,7 @@ app.get("/",function(req,res){
 io.on("connection",function(socket){
     socket.on("disconnect",function(){
         console.log("User has disconencted!");
-        io.sockets.emit("broadcast",{message: "User has disconnected!"});
+        socket.broadcast.emit("broadcast",{message: "User has disconnected!"});
     })
     socket.on("message",function(msg){
         console.log("Message: "+msg);
